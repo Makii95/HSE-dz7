@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Профиль</title>
+</head>
+<body>
+    <h1>Информация о пользователе GitHub</h1>
+    <p><strong>Имя:</strong> {{ user.name or "Не указано" }}</p>
+    <p><strong>Логин:</strong> {{ user.login or "Не указан" }}</p>
+    <p><strong>Email:</strong> {{ user.email or "Не указан" }}</p>
+    <br>
+    <a href="{{ url_for('update') }}">Обновить данные</a>
+</body>
+</html>
