@@ -4,21 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Резюме {{ user.name }}</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #252542);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .resume-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .info {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .info strong {
+            color: #ffd700;
+        }
+        .btn-update {
+            background: #ffd700;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-update:hover {
+            background: #ffcc00;
+        }
+        a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Резюме {{ user.name }}</h1>
-    <p><strong>Логин:</strong> {{ user.login }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Репозитории:</strong> {{ user.public_repos }}</p>
-    <p><strong>Подписчики:</strong> {{ user.followers }}</p>
-    <p><strong>Дата регистрации:</strong> {{ user.created_at }}</p>
+
+<div class="resume-card">
+    <h1>{{ user.name }}</h1>
+    <p class="info"><strong>Логин:</strong> {{ user.login }}</p>
+    <p class="info"><strong>Email:</strong> {{ user.email }}</p>
+    <p class="info"><strong>Репозитории:</strong> {{ user.public_repos }}</p>
+    <p class="info"><strong>Подписчики:</strong> {{ user.followers }}</p>
+    <p class="info"><strong>Дата регистрации:</strong> {{ user.created_at }}</p>
 
     {% if user.bio and user.bio != "Не указано" %}
-        <p><strong>О себе:</strong> {{ user.bio }}</p>
+        <p class="info"><strong>О себе:</strong> {{ user.bio }}</p>
     {% endif %}
 
     {% if user.blog and user.blog != "Не указано" %}
-        <p><strong>Блог / Веб-сайт:</strong> <a href="{{ user.blog }}" target="_blank">{{ user.blog }}</a></p>
+        <p class="info"><strong>Блог / Веб-сайт:</strong> <a href="{{ user.blog }}" target="_blank">{{ user.blog }}</a></p>
     {% endif %}
+
+    <a href="{{ url_for('update') }}" class="btn-update">Обновить данные</a>
+</div>
+
 </body>
 </html>
