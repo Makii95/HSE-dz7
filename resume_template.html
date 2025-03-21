@@ -2,14 +2,23 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>GitHub Профиль</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме {{ user.name }}</title>
 </head>
 <body>
-    <h1>Информация о пользователе GitHub</h1>
-    <p><strong>Имя:</strong> {{ user.name or "Не указано" }}</p>
-    <p><strong>Логин:</strong> {{ user.login or "Не указан" }}</p>
-    <p><strong>Email:</strong> {{ user.email or "Не указан" }}</p>
-    <br>
-    <a href="{{ url_for('update') }}">Обновить данные</a>
+    <h1>Резюме {{ user.name }}</h1>
+    <p><strong>Логин:</strong> {{ user.login }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Репозитории:</strong> {{ user.public_repos }}</p>
+    <p><strong>Подписчики:</strong> {{ user.followers }}</p>
+    <p><strong>Дата регистрации:</strong> {{ user.created_at }}</p>
+
+    {% if user.bio and user.bio != "Не указано" %}
+        <p><strong>О себе:</strong> {{ user.bio }}</p>
+    {% endif %}
+
+    {% if user.blog and user.blog != "Не указано" %}
+        <p><strong>Блог / Веб-сайт:</strong> <a href="{{ user.blog }}" target="_blank">{{ user.blog }}</a></p>
+    {% endif %}
 </body>
 </html>
