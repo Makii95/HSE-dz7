@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, url_for
-from gitapi import fetch_github_user_data, cached_user_data  # Обновлённый импорт
+from gitapi import fetch_github_user_data
 
 app = Flask(__name__, template_folder='templates')
+cached_user_data = None
 
 @app.route('/')
 def resume():
